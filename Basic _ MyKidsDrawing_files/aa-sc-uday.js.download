@@ -1,0 +1,596 @@
+var shoppingCart = (function() {
+  // =============================
+  // Private methods and propeties
+  // =============================
+  cart = [];
+
+
+  
+  // Constructor
+  function Item(name, price, count,size,file,suggestion,option,deposit) {
+    this.name = name;
+    this.price = price;
+    this.count = count;
+    this.size= size;
+    this.file= file;
+    this.suggestion= suggestion;  //art-avenue file-id
+    this.option=option;           //art-avenue seller-uid
+    this.deposit=deposit;
+  }
+  
+  // Save cart
+  function saveCart() {
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+  }
+  
+    // Load cart
+    function loadCart() {
+      cart = JSON.parse(localStorage.getItem('shoppingCart'));
+      console.log(cart)
+    }
+    if (localStorage.getItem("shoppingCart") != null) {
+
+      loadCart();
+
+    }
+
+
+
+  // =============================
+  // Public methods and propeties
+  // =============================
+  var obj = {};
+  
+  // Add to cart
+  obj.addItemToCart = function(name, price, count,size,file,suggestion,option,deposit) {
+    cart = JSON.parse(localStorage.getItem('shoppingCart'));
+    for(var item in cart) {
+      if(cart[item].name === name) {
+        cart[item].count ++;
+        saveCart();
+        return;
+      }
+    }
+    var item = new Item(name, price, count,size,file,suggestion,option,deposit);
+    cart.push(item);
+    saveCart();
+  }
+  // Set count from item
+  obj.setCountForItem = function(name, count) {
+    for(var i in cart) {
+      if (cart[i].name === name) {
+        cart[i].count = count;
+        break;
+      }
+    }
+  };
+  // Remove item from cart
+  obj.removeItemFromCart = function(name) {
+    for(var item in cart) {
+      if(cart[item].name === name) {
+        cart[item].count --;
+        if(cart[item].count === 0) {
+          cart.splice(item, 1);
+        }
+        break;
+      }
+    }
+    saveCart();
+  }
+
+  // Remove all items from cart
+  obj.removeItemFromCartAll = function(name) {
+    for(var item in cart) {
+      if(cart[item].name === name) {
+        cart.splice(item, 1);
+        break;
+      }
+    }
+    saveCart();
+  }
+
+  // Clear cart
+  obj.clearCart = function() {
+
+    var localData= localStorage.getItem('shoppingCart');
+    var arr =JSON.parse(localData);
+    var dataLength = arr.length;
+    for(var i=0; i<dataLength; i++){
+      var filename =arr[i].name
+      updatetheData(filename);
+    }
+    cart = [];
+    saveCart();
+  }
+
+  // Count cart 
+  obj.totalCount = function() {
+    var totalCount = 0;
+    for(var item in cart) {
+      totalCount += cart[item].count;
+    }
+    return totalCount;
+  }
+
+  // Total cart
+  obj.totalCart = function() {
+    var totalCart = 0;
+    for(var item in cart) {
+      totalCart += cart[item].price * cart[item].count;
+    }
+    return Number(totalCart.toFixed(2));
+  }
+
+  // List cart
+  obj.listCart = function() {
+    var cartCopy = [];
+    for(i in cart) {
+      item = cart[i];
+      itemCopy = {};
+      for(p in item) {
+        itemCopy[p] = item[p];
+
+      }
+      itemCopy.total = Number(item.price * item.count).toFixed(2);
+      cartCopy.push(itemCopy)
+    }
+    return cartCopy;
+  }
+
+  // cart : Array
+  // Item : Object/Class
+  // addItemToCart : Function
+  // removeItemFromCart : Function
+  // removeItemFromCartAll : Function
+  // clearCart : Function
+  // countCart : Function
+  // totalCart : Function
+  // listCart : Function
+  // saveCart : Function
+  // loadCart : Function
+  return obj;
+})();
+
+
+// *****************************************
+// Triggers / Events
+// ***************************************** 
+// Add item
+$('.add-to-cart').click(function(event) {
+
+  event.preventDefault();
+
+  // var name = $(this).data('name');
+  // var price = Number($(this).data('price'));
+  var priceValue = $(this.dataset.price);
+  var price= priceValue.selector;
+
+  // var size = $(this).data('size');
+  // var file = $(this).data('file');
+  var nameValue = $(this.dataset.name);
+  var name =nameValue.selector;
+  var sizeValue = $(this.dataset.size);
+  var size= sizeValue.selector;
+  var  base64 = $(this.dataset);
+  var file= base64[0].file;
+  var suggestionValue = $(this.dataset.suggestion);
+  var suggestion= suggestionValue.selector;
+  var optionValue = $(this.dataset.option);
+  var option = optionValue.selector;
+  var depositValue = $(this.dataset.deposit);
+  var deposit = depositValue.selector;
+  // var suggestion = $(this).data('suggestion');
+
+  var emailid = document.getElementById('emailid').value;
+  
+  
+  //  if(price==""){
+  //   alert("Width and Height fields are missing")
+  //   document.getElementById('width').style.border="1px solid red";
+  //   // location.reload();
+  //   // clearCart();
+  // }
+  if(emailid==""){
+    alert("enter the email")
+    document.getElementById('emailid').style.color="red";
+  }
+  else if(file=="" ){
+    alert("upload the photo")
+    document.getElementById('upload').value="red";
+    // location.reload();
+    // clearCart();
+  }
+  else if(size.length<=3){
+    alert("Width or Height fields are missing")
+  }
+  else if(option==""){
+    alert("please select finishin option")
+  }else if(deposit==""){
+    alert("please select deposit option")
+  }
+  
+
+  else{
+    shoppingCart.addItemToCart(name, price, 1,size,file,suggestion,option,deposit);
+    document.getElementById('id01').style.display="block";
+    setTimeout(function(){ 
+      document.getElementById('id01').style.display="none";
+    }, 3000);
+  }
+  
+  
+
+  displayCart();
+  checkingData();
+});
+function savetoCart2(elt){
+
+  var status = localStorage.getItem('loginStatus');
+
+  if(status=="true"){
+
+
+  
+ var name = elt.attributes[2].nodeValue;
+  var price = elt.attributes[3].nodeValue;
+  var file = elt.attributes[4].nodeValue;
+  var suggestion = elt.attributes[5].nodeValue;
+  var option = elt.attributes[7].nodeValue;
+  var size = elt.attributes[6].nodeValue;
+  var deposit = "";
+   if(size=="" || size==null){
+    alert("please select size")
+  }else{
+    $("#id01").modal("show");
+     shoppingCart.addItemToCart(name, price, 1,size,file,suggestion,option,deposit);
+  console.log("enter")
+  document.getElementById('cart-btn2').style.display="block";
+   document.getElementById('order-btn').style.display="block";
+  displayCart();
+  checkingData();
+  setTimeout(function(){ 
+    $("#id01").modal("hide");
+  }, 3000);
+  }
+  }else{
+    $("#myModal").modal("show");
+  }
+}
+
+// Art-Avenue - Add item
+$('.aa-add-to-cart').click(function(event) { 
+  event.preventDefault();
+
+  console.log("inside aa add-to-cart")
+
+  var emailid = document.getElementById('temp-email-id').value;
+
+  var name =  $(this).data('name') + emailid;
+
+  var price = Number($(this).data('price'));
+  var size = $(this).data('size');
+  var file = $(this).data('file');
+  var suggestion = $(this).data('suggestion');
+  var option = $(this).data('option');
+  var cartArray = shoppingCart.listCart();
+  console.log("cartArray is "+cartArray)
+
+
+
+
+
+  if(emailid == "" || emailid == null){
+    alert("Enter Email to add to cart...")
+    addClass(document.getElementById('temp-email-id'),"w3-border-red")
+
+  }
+
+
+    // if cart is empty, add the item to card
+    else if(cartArray.length == 0 ){
+
+      shoppingCart.addItemToCart(name, price, 1,size,file,suggestion,option);
+      displayCart();
+      checkingData();
+      sendCartTDetails()
+      document.getElementById('head-div').style.display="flex";
+      cartPop();
+    }
+
+    else{
+
+      //checking if the cart array has art-avenue item, returns true if its exists
+      var isPresent = cartArray.some(function(el){ return el.name === name});
+
+      console.log("bool is "+isPresent)
+
+      if(isPresent){
+
+        console.log('alert pop-up')
+        alert("Art Avenue Items are Exclusive!\nCan't Add more than Once!")
+      }
+
+      else{
+
+        shoppingCart.addItemToCart(name, price, 1,size,file,suggestion,option);
+        displayCart();
+        checkingData();
+        sendCartTDetails()
+        document.getElementById('head-div').style.display="flex";
+        cartPop();
+      }
+
+    }
+
+
+  });
+
+// Clear items
+$('.clear-cart').click(function() {
+  shoppingCart.clearCart();
+  checkingData();
+  displayCart();
+  // document.getElementById('head-div').style.display="none";
+  // document.getElementById('order-btn').style.display="none";
+  // document.getElementById('cart-btn2').style.display="none";
+  // document.getElementById('tp-div').style.display="none";
+  // document.getElementById('depo').style.display="none";
+  //  document.getElementById('paynow').style.display="none";
+  // document.getElementById('h2-hide').style.display="block";
+});
+
+// Art-Avenue - Clear items
+$('.aa-clear-cart').click(function() {
+  shoppingCart.clearCart();
+  displayCart();
+  checkingData();
+});
+
+
+
+function displayCart() {
+
+  console.log("inside cart")
+
+  var cartArray = shoppingCart.listCart();
+  var output = "";
+  var totalprice=0;
+  var payment=0;
+
+
+  for(var i in cartArray) {
+
+
+
+    // displaying cart for art-avenue items -by prem
+    if(cartArray[i].name.substring(21,31) ==  "Art-Avenue"){
+      console.log("Art-Avenue-dis")
+      payment=payment+ cartArray[i].count*cartArray[i].price;
+
+      output += "<tr>"
+      + "<td style='width: 3px;'><div><img src="+cartArray[i].file+" style='width:100px;'><label class='w3-hide-large'>"+cartArray[i].name.substring(21,31)+"</label> </div></td>" 
+      + "<td class='w3-hide-small' >" + '<b>Type : </b> ' +cartArray[i].name.substring(21,31)  +'<br>'+'<b>Size (inches) : </b> '+ cartArray[i].size+ "</td>" 
+      // + "<td><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
+      + "<td><div class='input-group'>"
+      + "<input disabled type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'style='width:40px;height:30px;margin:auto;'>"
+      + "</div><br>"
+      // + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div></td>"
+      +"<div class='w3-hide-large'><label> <b> Size(inches):&nbsp;</b></label><br>" + cartArray[i].size+"</div><div class='w3-hide-large'><label> <b> Price :&nbsp;</b> </label><br><i class=\"fas fa-rupee-sign\"></i><b>"+cartArray[i].price +"</b></div></td>"
+      + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
+      + " = " 
+      + "<td class='w3-hide-small'>" +'<i class="fas fa-rupee-sign"></i> '+ cartArray[i].total + "</td>" 
+      +  "</tr>";
+
+    }
+    else if(cartArray[i].option=="shop"){
+    payment=payment+ cartArray[i].count*cartArray[i].price;
+      document.getElementById('depo').innerHTML=cartArray[i].count*cartArray[i].price;
+
+        output += "<tr>"
+        + "<td style='width: 133px;'><div><img src="+cartArray[i].file+" style='width:100px;'><label class='w3-hide-large'>"+'<b>Name : </b> ' +cartArray[i].name.substring(13,21)+"</label> </div></td>" 
+        + "<td class='d-sm-none d-md-blocks' >" + '<b>Name : </b> ' +cartArray[i].name.substring(13,21)  +'<br>'+'<b>Price : </b> '+'<i class="fas fa-rupee-sign"></i> '+ cartArray[i].count*cartArray[i].price+'<br>'+'<b>Type : </b> '+ cartArray[i].option+ "</td>"
+        + "<td style='width: 128px;'><div class='input-group'><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
+      
+        + "<input disabled type='number' class='item-count form-control' data-name='" + cartArray[i].name + "' value='" + cartArray[i].count + "'style='width:40px;height:30px;margin:auto;'>"
+       
+        + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div>"
+        +"<br><div class='w3-hide-large w3-hide-medium'><b>Type : </b>"+cartArray[i].option +"</div><div class='w3-hide-large w3-hide-medium'><b>Proce : </b>"+'<i class="fas fa-rupee-sign"></i> '+cartArray[i].count*cartArray[i].price+"</div></td>"
+       
+        // +"<div class='w3-hide-large'><label> <b> Size(inches):&nbsp;</b></label><br>" + cartArray[i].option+"</div><div class='w3-hide-large'><label> <b> Price :&nbsp;</b> </label><br><i class=\"fas fa-rupee-sign\"></i><b>"+cartArray[i].price +"</b></div></td>"
+        + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
+        + " = " 
+        + "<td class='w3-hide-small'>" +'<i class="fas fa-rupee-sign"></i> '+ cartArray[i].total + "</td>" 
+        +  "</tr>";
+
+      }
+
+    else{
+      payment=payment+ cartArray[i].count*cartArray[i].deposit;
+      // localStorage.setItem("portraitDeposit", portraitDeposit);
+      
+      var optionVal;
+
+      totalprice=Number(totalprice)+Number(cartArray[i].total);
+    document.getElementById('tp-div').style.display="block";
+  
+   
+  
+    output += "<tr>"
+    + "<td  style='width: 133px;' id='nametd'><div><img src="+cartArray[i].file+" style='width:100px;'><label class='w3-hide-large'>"+cartArray[i].name.substring(13,135) +"</label> </div></td>" 
+    // + "<td class='w3-hide-small'>" + 'type : '+ cartArray[i].name.substring(0,12)+"<br>"+'size : '+cartArray[i].size + "</td>" 
+    + "<td class='d-none d-lg-block' style='max-width:300px;'>"+'<b>Type : </b> ' + cartArray[i].name.substring(13,135) +'<br>'+'<b>Size : </b> '+ cartArray[i].size+ '<br>'+cartArray[i].suggestion+'<br>'+'<i class="fas fa-rupee-sign"></i> '+cartArray[i].total+'<br>'+"</td>" 
+    // + "<td class='w3-hide-small'>" + cartArray[i].size + "</td>"
+    + "<td ><div class='input-group' ><button class='minus-item input-group-addon btn btn-primary' data-name=" + cartArray[i].name + ">-</button>"
+    + "<input type='number' class='item-count form-control' data-name='" + cartArray[i].name+ "' value='" + cartArray[i].count + "'style='width:38px;height:30px;margin:auto;'>"
+    + "<button class='plus-item btn btn-primary input-group-addon' data-name=" + cartArray[i].name + ">+</button></div><br>"
+    +"<div class='d-xs-block d-sm-block d-lg-none '><b>Size : </b>" + cartArray[i].size+"</div><div class='d-xs-block d-sm-block d-lg-none'>" + cartArray[i].suggestion+"</div><div class=' d-xs-block d-sm-block d-lg-none'><b>Price :<b/>"+'<i class="fas fa-rupee-sign"></i> '+cartArray[i].price +"</div>"
+    +"</td>"
+    + "<td><button class='delete-item btn btn-danger' data-name=" + cartArray[i].name + ">X</button></td>"
+    + " = " 
+    + "<td class='d-none d-lg-block'>" +'<i class="fas fa-rupee-sign"></i> '+ cartArray[i].count*cartArray[i].price + "</td>" 
+    +  "</tr>";
+
+
+
+
+  }
+
+
+
+ }
+
+$('.show-cart').html(output);
+$('.total-cart').html(shoppingCart.totalCart());
+$('.total-count').html(shoppingCart.totalCount());
+
+
+// hiding text > You have no items in cart currently when no cart is empty -by prem
+if(shoppingCart.totalCount() > 0 ){
+  document.getElementById('h2-hide').style.display="none";
+}
+
+}
+
+// Delete item button
+
+$('.show-cart').on("click", ".delete-item", function(event) {
+  var name = $(this).data('name')
+  
+  shoppingCart.removeItemFromCartAll(name);
+  updatetheData(name);
+  // checkingData();
+  displayCart();
+})
+
+// Art-Avenue - Delete item button -by prem
+$('.aa-show-cart').on("click", ".delete-item", function(event) {
+  var name = $(this).data('name')
+  updatetheData(name);
+  shoppingCart.removeItemFromCartAll(name);
+  displayCart();
+  checkingData();
+})
+
+
+// -1
+$('.show-cart').on("click", ".minus-item", function(event) {
+  var name = $(this).data('name')
+  shoppingCart.removeItemFromCart(name);
+  updatetheData(name);
+  checkingData();
+  displayCart();
+})
+// +1
+$('.show-cart').on("click", ".plus-item", function(event) {
+  var name = $(this).data('name')
+  shoppingCart.addItemToCart(name);
+  displayCart();
+})
+
+// Item count input
+$('.show-cart').on("change", ".item-count", function(event) {
+ var name = $(this).data('name');
+ var count = Number($(this).val());
+ shoppingCart.setCountForItem(name, count);
+ displayCart();
+});
+
+displayCart();
+
+ function updatetheData(name)
+                
+    {
+                   var removed = "removed-from-cart";
+
+      
+          $.ajax({
+          type: "PATCH",
+          url: "https://www.mykidsdrawing.in:8443/api/update-temp-cart/"+name+"/"+removed,
+          //  url: "http://localhost:8443/api/update-temp-cart/"+name+"/"+removed-from-cart,
+          contentType:"application/json",
+          // data:JSON.stringify(jsonObject),
+          headers:{
+          // "apiToken":apiToken
+          },
+          success: function() {
+          // alert("successfully updated");
+          // location.reload();
+          }
+
+          });
+
+
+
+          }
+           function postRazorpayOrders(){
+            var status = localStorage.getItem("loginStatus");
+            if(status=="true"){
+
+
+        var amount=0;
+        // var amount2;
+        var localData= localStorage.getItem('shoppingCart');
+        var userId = localStorage.getItem('id');
+       var arr =JSON.parse(localData);
+      //  var amount;
+       var type="shop";
+      
+       arr.forEach(data=>{
+  
+        var count = data.count;
+  
+          amount =amount+count*data.price*100;
+       console.log("amount is "+amount)
+       
+     
+  
+          }); 
+        var jsonObject  = {
+              "amount":amount,
+              "typeOfOrder":type
+              
+               
+            };
+            
+            console.log(jsonObject)
+            // var apitoken = localStorage.getItem('adminApiToken');
+            
+            $.ajax({
+              type: "POST",
+              // url: "http://localhost:8443/api/create-razorpay-order/"+userId,
+            url: "https://mykidsdrawing.in:8443/api/create-razorpay-order/"+userId,
+              headers: {
+              //  'apiToken': apitoken
+  
+             },  
+             contentType:"application/json",
+             data:JSON.stringify(jsonObject),
+             success: function(data) {
+               localStorage.setItem('orid',data.localOrderId);
+               console.log("status is ")
+              alert(" ordered taken successfully");
+              //  getRazorpayOrderId();
+               setTimeout(function() {
+              window.location.href="https://www.mykidsdrawing.in/checkout.html";
+            }, 1000);
+             
+              // updateData();
+              // location.reload();
+            }
+        
+  
+      }); 
+       }else{
+        $("#myModal").modal("show");
+       }
+        
+      }
+
+
+
+         
+
+      
+
+
+     

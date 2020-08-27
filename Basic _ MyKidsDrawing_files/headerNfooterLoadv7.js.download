@@ -1,0 +1,382 @@
+
+
+// Dynamically loading header, sidebar & footer
+
+
+function loadnavbar(){
+
+  document.getElementById('navheaderID').innerHTML = '<div class="container-fluid">\
+  <button type="button" class="drawer-toggle drawer-hamburger">\
+  <span class="sr-only">toggle navigation</span>\
+  <span class="drawer-hamburger-icon"></span>\
+  </button>\
+  <nav class="drawer-nav" role="navigation" style="overflow: scroll;z-index:3;">\
+  <ul class="drawer-menu">\
+  <li><a class="drawer-brand" href="https://www.mykidsdrawing.in/signin" id="signin">Hello, Sign In</a></li>\
+  <li class="dropdown" style="cursor:pointer;">\
+  <a id="side-myaccount" class="drawer-brand" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 ">My Account <i class="fa fa-chevron-down"></i></a>\
+  <div class="collapse multi-collapse" id="multiCollapseExample2">\
+  <div class="px-2 accountCollapse">\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/profile" style="text-decoration:none;">Profile</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/view-orders" style="text-decoration:none;">My Orders</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/invite" style="text-decoration:none;">Invite Friend</a>\
+  <a id="signout" class="drawer-menu-item" onclick="signOut()" href="#" style="text-decoration:none;">Sign Out</a>\
+  </div>\
+  </div>\
+  </li>\
+  <li><a class="drawer-brand  " href="https://www.mykidsdrawing.in/index">Home</a></li>\
+  <li class="dropdown" style="cursor:pointer;" id="side-drawings">\
+  <a id="side-drawings" class="drawer-brand" data-toggle="collapse" data-target=".multi-collapse22" aria-expanded="false" aria-controls="multiCollapseExample11 multiCollapseExample12">Drawings <i class="fa fa-chevron-down"></i></a>\
+  <div class="collapse multi-collapse22" id="multiCollapseExample12">\
+  <div class="px-2 drawingsCollapse">\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/all-drawings" style="text-decoration:none;">All Drawings</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/file-upload" style="text-decoration:none;">Upload Drawings</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/my-gallery" id="mydrawings" style="text-decoration:none;">My Drawings</a>\
+  </div>\
+  </div>\
+  </li>\
+  <li class="dropdown" style="cursor:pointer;" id="side-academy">\
+  <a id="side-academy" class="drawer-brand collapsed" data-toggle="collapse" data-target=".multi-collapse21" aria-expanded="false" aria-controls="multiCollapseExample1 ">Art Academy <i class="fa fa-chevron-down"></i></a>\
+  <div class="multi-collapse21 collapse" id="multiCollapseExample2" >\
+  <div class="px-2 academyCollapse"> \
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/academy" style="text-decoration:none;">Art Academy</a> \
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/tutors" style="text-decoration:none;">Tutors</a> \
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/academy-faqs" style="text-decoration:none;">Academy FAQs</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/workshops" style="text-decoration:none;">Workshops</a>\
+  </div>\
+  </div>\
+  </li>\
+  <li class="dropdown" style="cursor:pointer;" id="side-school">\
+  <a id="side-school" class="drawer-brand collapsed" data-toggle="collapse" data-target=".multi-collapse23" aria-expanded="false" aria-controls="multiCollapseExample1 ">School <i class="fa fa-chevron-down"></i></a>\
+  <div class="multi-collapse23 collapse" id="multiCollapseExample3" >\
+  <div class="px-2 academyCollapse"> \
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/school" style="text-decoration:none;">School</a> \
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/worksheets" style="text-decoration:none;">Worksheets</a> \
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/worksheet" style="text-decoration:none;display:none;" id="m-paidworksheets">Paid Worksheets</a> \
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/upload-worksheets" style="text-decoration:none;display:none;" id="m-uploadworksheets">Upload Worksheets</a> \
+    <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/user-worksheets" style="text-decoration:none;display:none;" id="m-myworksheets">My Worksheets</a> \
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/school-topics" style="text-decoration:none;">About Us</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/school-faq" style="text-decoration:none;">School FAQ</a>\
+  </div>\
+  </div>\
+  </li>\
+  <li class="dropdown" style="cursor:pointer;" id="side-competition">\
+  <a id="side-competition" class="drawer-brand" data-toggle="collapse" data-target=".multi-collapse2" aria-expanded="false" aria-controls="multiCollapseExample3 ">Competition <i class="fa fa-chevron-down"></i></a>\
+  <div class="collapse multi-collapse2" id="multiCollapseExample3">\
+  <div class="px-2 competitionCollapse">\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/competition" style="text-decoration:none;">Free Competition</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/submissions" style="text-decoration:none;">Submissions</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/competition-winners" style="text-decoration:none;">Competition Winners</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/polls" style="text-decoration:none;">Polls</a>\
+  </div>\
+  </div>\
+  </li>\
+  <li class="dropdown" style="cursor:pointer;" id="side-artavenue">\
+  <a id="side-aa" class="drawer-brand" data-toggle="collapse" data-target=".multi-collapse3" aria-expanded="false" aria-controls="multiCollapseExample3 ">Fun Area <i class="fa fa-chevron-down"></i></a>\
+  <div class="collapse multi-collapse3" id="multiCollapseExample3">\
+  <div class="px-2 artCollapse" >\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/games"  style="text-decoration:none;">Games</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/birthdays" style="text-decoration:none;">Birthdays</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/leaderboard" style="text-decoration:none;">Leader Board</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/talent-coins" style="text-decoration:none;">Talent Coins</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/hall-of-fame" style="text-decoration:none;">Hall Of Fame</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/school-list" style="text-decoration:none;">School List</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/books" style="text-decoration:none;">Audio Books</a>\
+  <a class="drawer-menu-item" href="https://mykidsdrawing.photo.blog/" style="text-decoration:none;" target="_blank">Blog</a>\
+  </div>\
+  </div>\
+  </li>\
+  <li class="dropdown" style="cursor:pointer;" id="side-shop">\
+  <a id="side-shop" class="drawer-brand" data-toggle="collapse" data-target=".multi-collapse4" aria-expanded="false" aria-controls="multiCollapseExample4 ">Shop <i class="fa fa-chevron-down"></i></a>\
+  <div class="collapse multi-collapse4" id="multiCollapseExample3">\
+  <div class="px-2 shopCollapse" >\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/shop" style="text-decoration:none;">Art Supplies</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/artist-shop" style="text-decoration:none;">Artist Shop</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/my-designs" style="text-decoration:none;">My Designs</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/artist-shops-list" style="text-decoration:none;">List of Artists</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/personalize" style="text-decoration:none;">Personalize</a>\
+  </div>\
+  </div>\
+  </li>\
+  <li class="dropdown" style="cursor:pointer;" id="side-about">\
+  <a  class="drawer-brand" data-toggle="collapse" data-target=".multi-collapse5" aria-expanded="false" aria-controls="multiCollapseExample5 ">About <i class="fa fa-chevron-down"></i></a>\
+  <div class="collapse multi-collapse5" id="multiCollapseExample5">\
+  <div class="px-2 artCollapse" >\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/about" style="text-decoration:none;">About</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/faq" style="text-decoration:none;">FAQ</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/terms" style="text-decoration:none;">Terms</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/contact-us" style="text-decoration:none;">Contact Us</a>\
+  <a class="drawer-menu-item" href="https://www.mykidsdrawing.in/collaboration" style="text-decoration:none;">Collaboration</a>\
+  </div>\
+  </div>\
+  </li>\
+  </ul>\
+  </nav>\
+  </div>\
+  <div class="container-fluid card px-0" style="position:fixed;background:white;z-index: 1;">\
+  <div class="container-fluid d-flex " id="box">\
+  <div class="conatiner-fluid mt-2 px-0">\
+  <a href="https://www.mykidsdrawing.in/index">\
+  <img src="https://www.mykidsdrawing.in/img/MKD-logo.jpg" class="logo"></img>\
+  </a>\
+  </div>\
+  <div class="container-fluid px-0">\
+  <ul class="nav my-2 d-flex justify-content-around" id="dt-bar">\
+  <li class="nav-item " id="dt-home">\
+  <a class="nav-link " aria-current="page" href="https://www.mykidsdrawing.in/index">Home</a>\
+  </li>\
+  <li class="nav-item  dropdown" id="dt-drawings">\
+  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Drawings</a>\
+  <ul class="dropdown-menu mb-dropdown"  >\
+  <li><a href="https://www.mykidsdrawing.in/all-drawings">All Drawings</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/file-upload">Upload Drawings</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/my-gallery">My Drawings</a></li>\
+  </ul>\
+  </li>\
+  <li class="nav-item  dropdown" id="dt-academy">\
+  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Art Academy</a>\
+  <ul class="dropdown-menu mb-dropdown"  >\
+  <li><a href="https://www.mykidsdrawing.in/academy">Art Academy</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/tutors">Tutors</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/academy-faqs">Academy FAQs</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/workshops">Workshops</a></li>\
+  </ul>\
+  </li>\
+  <li class="nav-item  dropdown" id="dt-school">\
+  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">School</a>\
+  <ul class="dropdown-menu mb-dropdown"  >\
+  <li><a href="https://www.mykidsdrawing.in/school">School</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/worksheets">Worksheets</a></li>\
+  <li id="d-paidworksheets" style="display:none;"><a href="https://www.mykidsdrawing.in/worksheet" >Paid Worksheets</a></li>\
+  <li id="d-uploadworksheets" style="display:none;"><a href="https://www.mykidsdrawing.in/upload-worksheets" >Upload Worksheets</a></li>\
+  <li id="d-myworksheets" style="display:none;"><a href="https://www.mykidsdrawing.in/user-worksheets" >My Worksheets</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/school-topics">About Us</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/school-faq">School FAQ</a></li>\
+  </ul>\
+  </li>\
+  <li class="nav-item  dropdown" id="dt-competition">\
+  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" >Competition</a>\
+  <ul class="dropdown-menu mb-dropdown"  >\
+  <li><a href="https://www.mykidsdrawing.in/competition">Free Competition</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/submissions">Submissions</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/competition-winners">Competition Winners</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/polls">Polls</a></li>\
+  </ul>\
+  </li>\
+  <li class="nav-item  dropdown" id="dt-artavenue">\
+  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" >Fun Area</a>\
+  <ul class="dropdown-menu mb-dropdown"  >\
+  <li><a href="https://www.mykidsdrawing.in/games" >Games</a></li>\
+  <li><a  href="https://www.mykidsdrawing.in/birthdays">Birthdays</a></li>\
+  <li><a  href="https://www.mykidsdrawing.in/leaderboard">Leader Board</a></li>\
+  <li><a  href="https://www.mykidsdrawing.in/talent-coins">Talent Coins</a></li>\
+  <li><a  href="https://www.mykidsdrawing.in/hall-of-fame" style="text-decoration:none;">Hall Of Fame</a></li>\
+  <li><a  href="https://www.mykidsdrawing.in/school-list" style="text-decoration:none;">School List</a></li>\
+  <li><a  href="https://www.mykidsdrawing.in/books" style="text-decoration:none;">Audio Books</a></li>\
+  <li><a target="_blank" href="https://mykidsdrawing.photo.blog/">Blog</a></li>\
+  </ul>\
+  </li>\
+  <li class="nav-item  dropdown" id="dt-shop">\
+  <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" >Shop</a>\
+  <ul class="dropdown-menu mb-dropdown"  >\
+  <li><a href="https://www.mykidsdrawing.in/shop">Art Supplies</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/artist-shop">Artist Shop</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/my-designs">My Designs</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/artist-shops-list">List Of Artists</a></li>\
+  <li><a href="https://www.mykidsdrawing.in/personalize">Personalize</a></li>\
+  </ul>\
+  </li>\
+  <li class="nav-item">\
+  <button id="cart-btn" type="button" class=" btn btn-primary nav-link w3-margin-left d-flex"\
+  data-toggle="modal" data-target="#cart" onclick="checkingData()"><span class="badge total-count"></span><i class="fas fa-shopping-cart"></i></button>\
+  </li>\
+  </ul>\
+  </div>\
+  </div>\
+  </div>\;'
+  
+  
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+function loadfooter(){
+
+
+
+  document.getElementById('footerID').innerHTML='<div style=" color: white;">\
+  <div class="container w3-border-bottom">\
+  <div class="row py-4 d-flex align-items-center">\
+  <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">\
+  <h6 class="mb-0 fontGothamH" >Get connected with us on social networks!</h6>\
+  </div>\
+  <div class="col-md-6 col-lg-7 d-flex flex-wrap justify-content-around social-media">\   <a href="https://www.facebook.com/mykidsdrawing" target="_blank">\
+  <span></span>\
+  <span></span>\
+  <span></span>\
+  <span></span>\
+  <i class="fab fa-facebook-f"></i>\
+  </a>\
+  <a href="https://www.instagram.com/mykidsdrawing.in/" target="_blank">\
+  <span></span>\
+  <span></span>\
+  <span></span>\
+  <span></span>\
+  <i class="fab fa-instagram"></i>\
+  </a> \
+  <a href="https://www.youtube.com/mykidsdrawing" target="_blank">\
+  <span></span>\
+  <span></span>\
+  <span></span>\
+  <span></span>\
+  <i class="fab fa-youtube"></i>\
+  </a>  \
+  </div>\
+  </div>\
+  </div>\
+  </div>\
+  <div class="container text-center text-md-left mt-2">\
+  <div id="mc_embed_signup">\
+  <form action="https://mykidsdrawing.us4.list-manage.com/subscribe/post?u=091eb270211b32fab73a4d170&amp;id=aedf718d9f" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>\
+  <div id="mc_embed_signup_scroll">\
+  <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="type email address & subscribe!" required>\
+  <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_091eb270211b32fab73a4d170_aedf718d9f" tabindex="-1" value=""></div>\
+  <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>\
+  </div>\
+  </form>\
+  </div>\
+  <div class="row mt-3" id="footer-links">\
+  <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">\
+  <h6 class="text-uppercase font-weight-bold fontGothamH" >platform </h6>\
+  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">\
+  <img src="https://www.mykidsdrawing.in/img/MKD-logo.jpg" style="width:100%;border-radius:20px;"/>\
+  </div>\
+  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">\
+  <h6 class="text-uppercase font-weight-bold fontGothamH" >features</h6>\
+  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">\
+  <p>\
+  <a class="fontGothamD" href="https://www.mykidsdrawing.in/academy">Academy</a>\
+  </p>\
+  <p>\
+  <a class="fontGothamD" href="https://www.mykidsdrawing.in/competition">Competition</a>\
+  </p>\
+  <p>\
+  <a class="fontGothamD" href="https://www.mykidsdrawing.in/shop">Art Supplies</a>\
+  </p>\
+  <p>\
+  <a class="fontGothamD" href="https://www.mykidsdrawing.in/talent-coins">Talent Coins</a>\
+  </p>\
+  </div>\
+  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">\
+  <h6 class="text-uppercase font-weight-bold fontGothamH">Useful links</h6>\
+  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">\
+  <p>\
+  <a class="fontGothamD" href="https://mykidsdrawing.photo.blog/" target="_blank">Blog</a>\
+  </p>\
+  <p>\
+  <a class="fontGothamD" href="https://www.mykidsdrawing.in/faq">FAQ</a>\
+  </p>\
+  <p>\
+  <a class="fontGothamD" href="https://www.mykidsdrawing.in/about">About</a>\
+  </p>\
+  <p>\
+  <a class="fontGothamD" href="https://www.mykidsdrawing.in/terms">Terms</a>\
+  </p>\
+  </div>\
+  <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">\
+  <h6 class="text-uppercase font-weight-bold fontGothamH">Contact</h6>\
+  <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;">\
+  <p  class="fontGothamD">\
+  <a class="fontGothamD" href="https://www.mykidsdrawing.in/contact-us" target="_blank">Contact Us</a>\
+  </p>\
+  <p  class="fontGothamD">\
+  <i class="fas fa-home mr-3 "></i>Hebbal, Bengaluru.</p>\
+  <p  class="fontGothamD">\
+  <i class="fas fa-envelope mr-3 "></i> mykidsdrawing@gmail.com</p>\
+  <p  class="fontGothamD">\
+  <i class="fas fa-phone mr-3 "></i> +91 9380183066</p>\
+  </div>\
+  </div>\
+  </div>\
+  <div class="footer-copyright text-center py-3 fontGothamD" style="opacity:0.5;font-size: 13px;">Copyright 2020\
+  <a href="https://www.mykidsdrawing.in" class="fontGothamD" style="color: aliceblue;text-decoration: none;font-size:16px;"><br> My Kids Drawing</a><br>\
+  <p class="fontGothamD">Nurturing Creative Future Leaders!</p>\
+  Powered By <a class="fontGothamD" href="https://vnritsolutions.com/" style="color: aliceblue;text-decoration: none;"><b class="fontGothamD">VNR IT SOLUTIONS</b> </a>\
+  </div>\
+  '
+  
+}
+
+function checkingData() {
+  var cartData = JSON.parse(localStorage.getItem('shoppingCart'));
+  if(cartData!=null){
+    if(cartData.length==0){
+      console.log(cartData.length)
+      document.getElementById('head-div').style.display='none';
+      document.getElementById('tp-div').style.display='none';
+      document.getElementById('h2-hide').style.display='block';
+
+      document.getElementById('cart-btn2').style.display='none';
+      document.getElementById('order-btn').style.display='none';
+    }
+  }else if(cartData==null){
+    document.getElementById('head-div').style.display='none';
+    document.getElementById('tp-div').style.display='none';
+    document.getElementById('h2-hide').style.display='block';
+    document.getElementById('cart-btn2').style.display='none';
+    document.getElementById('order-btn').style.display='none';
+  }
+  
+}
+checkUserSubscription();
+function checkUserSubscription(){
+  var arr;
+    var userId = localStorage.getItem('id');
+    var request = new XMLHttpRequest();
+    // request.open('GET','http://localhost:8443/api/check-worksheet-expirydate/'+userId,true);
+    request.open('GET','https://mykidsdrawing.in:8443/api/check-worksheet-expirydate/'+userId,true);
+    request.onload=function(){
+        var data = JSON.parse(this.response);
+        console.log(data)
+        if(request.status==200){
+          arr=data;
+          arr.forEach(element=>{
+             var date = new Date();
+           var d1 =new Date(element.from_date);
+           var d2 = new Date(element.to_date);
+           duration=element.duration;
+           localStorage.setItem("kidclass",element.kid_class);
+           localStorage.setItem("duration",element.duration);
+           var fromDate = d1.toISOString().substr(0,10);
+           var toDate = d2.toISOString().substr(0,10);
+           var date2 = date.toISOString().substr(0,10);
+       
+           if(date2>=fromDate && date2<=toDate){
+            document.getElementById("m-paidworksheets").style.display="block";
+            document.getElementById("m-uploadworksheets").style.display="block";
+            document.getElementById("m-myworksheets").style.display="block";
+            document.getElementById("d-paidworksheets").style.display="block";
+            document.getElementById("d-uploadworksheets").style.display="block";
+            document.getElementById("d-myworksheets").style.display="block";
+               console.log(fromDate +" < "+date2+" < "+toDate)
+           }else{
+              
+               document.getElementById("paid-worksheets").style.display="none";
+               
+           }
+          })
+       
+          
+        }
+    }
+    request.send();
+}

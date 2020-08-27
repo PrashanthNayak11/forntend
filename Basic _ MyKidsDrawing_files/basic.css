@@ -1,0 +1,424 @@
+@font-face {
+    font-family: 'gothambook';
+    src: url('../fonts/gothambook-webfont.woff2') format('woff2'),
+         url('../fonts/gothambook-webfont.woff') format('woff'),
+         url('../fonts/gothambook-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+body{
+    font-family:gothambook !important;
+}
+.logo{
+    width: 194px;
+    margin-left: 39px;
+    margin-top: 2px;
+}
+.drawer-brand{
+    font-size: 1.2rem;
+}
+#footerID{
+  background-color: #5245b3;
+}
+#cart-btn{
+  background-color: #5245b3;
+   border-color: #5245b3;
+}
+#cart-btn {
+    border-radius: 27px;
+    padding-left: 0px;
+    margin-top: 3px;
+    cursor: pointer;
+    z-index: 1;
+    /* margin-right: 10px; */
+}
+#clear-cart{
+  font-size: 14px;
+  background: red;
+    border-color: red;
+}
+#view-orders{
+  font-size: 14px;
+  background: green;
+    border-color: green;
+}
+.mb-dropdown li{
+ padding-left: 15px;
+ padding-top: 5px;
+ padding-bottom:5px;
+}
+.mb-dropdown li a{
+    text-decoration: none;
+}
+.mb-dropdown{
+    border-radius: 12px;
+}
+#side-drawings{
+    display:none;
+}
+#side-academy{
+    display:none;
+}
+#side-competition{
+    display:none;
+}
+#side-artavenue{
+    display:none;
+}
+#side-shop{
+    display:none;
+}
+#side-about{
+    display:block;
+}
+.social-media {
+    left: 0%;
+    transform: translate(0%, -50%);
+  }
+  .social-media i {
+    margin-left: 18px;
+    color: #ffffff;
+  }
+  .social-media a {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    top: 20px;
+    color: #262626;
+    transition: 0.5s;
+  }
+  .social-media a span {
+    position: absolute;
+    transition: transform 0.5s;
+  }
+  .social-media a span:nth-child(1),
+  .social-media a span:nth-child(3) {
+    width: 100%;
+    height: 1px;
+    background: #ffffff;
+  }
+  .social-media a span:nth-child(1) {
+    top: 0;
+    left: 0;
+    transform-origin: right;
+  }
+  .social-media a:hover span:nth-child(1) {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s;
+  }
+  .social-media a span:nth-child(3) {
+    bottom: 0;
+    left: 0;
+    transform-origin: left;
+  }
+  .social-media a:hover span:nth-child(3) {
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.5s;
+  }
+  .social-media a span:nth-child(2),
+  .social-media a span:nth-child(4) {
+    width: 2px;
+    height: 100%;
+    background: #ffffff;
+  }
+  .social-media a span:nth-child(2) {
+    top: 0;
+    left: 0;
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  .social-media a:hover span:nth-child(2) {
+    transform: scaleY(1);
+    transform-origin: top;
+    transition: transform 0.5s;
+  }
+  .social-media a span:nth-child(4) {
+    right: 0;
+    top: 0;
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  .social-media a:hover span:nth-child(4) {
+    transform: scaleY(1);
+    transform-origin: bottom;
+    transition: transform 0.5s;
+  }
+#footer-links p a{
+    color: white;
+    text-decoration: none;
+}
+#dt-bar li a{
+    color: black;
+}
+/* #dt-bar li a:hover{
+    background: #1591ff;
+    color: white;
+}
+
+.mb-dropdown li:hover{
+    background: #1591ff;
+    color: white;
+} */
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    top: -10px;
+    right: 5px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+    color: white;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    background-color: chocolate;
+}
+
+#dt-bar{
+    font-size: 18px;
+}
+#dt-home a{
+    color: #03bfc5 !important;
+}
+#dt-drawings a{
+    color: mediumvioletred !important;
+}
+#dt-drawings ul{
+     box-shadow: 0 0 4px 0 mediumvioletred;
+}
+#dt-academy a{
+     color: purple !important;
+}
+#dt-academy ul{
+    box-shadow: 0 0 4px 0 purple;
+}
+#dt-school a{
+    color: darkgreen !important;
+}
+#dt-school ul{
+    box-shadow: 0 0 4px 0 darkgreen;
+}
+#dt-artavenue a{
+    color: #35af35 !important;
+}
+#dt-artavenue ul{
+    box-shadow: 0 0 4px 0 #35af35;
+}
+#dt-shop a{
+     color: #4c5d80 !important;
+}
+#dt-shop ul{
+    box-shadow: 0 0 4px 0 #4c5d80;
+}
+#dt-competition a{
+    color: mediumslateblue !important;
+}
+#dt-competition ul{
+   box-shadow: 0 0 4px 0 mediumslateblue;
+}
+#dt-about a{
+    color: #5092cc !important;
+}
+#dt-about ul{
+   box-shadow: 0 0 4px 0 #5092cc;
+}
+#box{
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+.mb-dropdown li a{
+
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
+.mb-dropdown li a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: purple !important;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+
+.mb-dropdown li a:hover:after {
+    width: 100%;
+    left: 0;
+}
+.drawer-menu li a{
+    text-decoration: none;
+    display: table;
+    position: relative;
+}
+.drawer-menu li a:after {
+    background: none repeat scroll 0 0 transparent;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 2px;
+    left: 50%;
+    position: absolute;
+    background: #1591ff !important;
+    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    width: 0;
+}
+.drawer-menu li a:hover:after {
+    width: 100%;
+    left: 0;
+}
+#sigin-card{
+    width: 32%;
+  }
+  #login-card{
+    width: 32%;
+  }
+  .g-signin2 > div{
+margin: 0 auto;
+width: 100%;
+}
+#signin-btn{
+width: 100%;
+}
+#signout{
+    display: none;
+}
+.drawer--left.drawer-open .drawer-hamburger {
+    left: 13.25rem !important;
+}
+button:focus {outline:0;}
+#head-div{
+    display: none;
+}
+#tp-div{
+    display: none; 
+}
+#mc_embed_signup .button{
+    background:darkmagenta!important;
+}
+#tp-div{
+
+    padding-left: 20px;
+
+}
+.table>:not(caption)>*>* {
+    border-bottom-width: 0px;
+}
+.quantity{
+    margin-left: 100px;
+}
+.nav-item ul{
+    width:200px;
+    font-size: 18px;
+}
+#dt-school{
+    display: none;
+}
+@media (max-width: 576px) { 
+  
+    #cart-btn{
+        margin-left: 45px;
+    }
+    .logo{
+        margin-top: 1px;
+    }
+ }
+ @media (max-width: 1200px) { 
+  
+
+/*    #side-about{
+        display: block;
+    }*/
+ }
+ @media (max-width: 1220px){
+    #dt-shop{
+        display: none;
+    }
+    #side-shop{
+        display: block;
+    }
+    #dt-artavenue{
+        display: none;
+    }
+    #side-artavenue{
+        display: block;
+    }
+ }
+  @media (min-width: 320px) and (max-width: 320px){
+    .logo{
+        width: 156px;
+        margin-top: 3px;
+    }
+  }
+   @media (max-width: 992px){
+    /* #dt-artavenue{
+        display: none;
+    }
+    #side-artavenue{
+        display: block;
+    } */
+
+   }
+     @media (min-width: 992px){
+    .cart-desc{
+        margin-left: 100px;
+    }
+    .quantity{
+        margin-left: 267px;
+    }
+    .cart-price{
+        margin-left: 125px;
+
+    }
+    #dt-school{
+        display: block;
+    }
+    #side-school{
+        display: none;
+    }
+   }
+
+ @media (max-width: 900px){
+    #dt-artavenue{
+        display: none;
+    }
+    #side-artavenue{
+        display: block;
+    }
+    #dt-competition{
+        display: none;
+    }
+    #side-competition{
+        display: block;
+    }
+    #dt-academy{
+        display: none;
+    }
+    #side-academy{
+        display: block;
+    }
+    #dt-drawings{
+        display: none;
+    }
+    #side-drawings{
+        display: block;
+    }
+    #dt-home{
+        display: none;
+    }
+    #side-home{
+        display: block;
+    }
+    #dt-bar{
+        float: right;
+    }
+ }
